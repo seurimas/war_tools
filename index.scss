@@ -1,3 +1,32 @@
-#attacker_results table, #defender_results table {
+#attacker_results table td, #defender_results table td {
   font-size: 8px;
+}
+
+.total {
+  text-align: center;
+}
+
+td.total {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+@for $i from 0 through 1000 {
+  .odds_#{$i} {
+    background-color: adjust-hue($color: #bb0, $degrees: (($i - 100) / 4));
+    color: white;
+  }
+}
+
+@for $i from 1001 through 10000 {
+  .odds_#{$i} {
+    background-color: adjust-hue($color: #bb0, $degrees: (900 / 4));
+    color: white;
+  }
+}
+
+@for $i from 1 through 100 {
+  .probable_#{$i} .result_#{$i} {
+    border: 2px solid black;
+  }
 }

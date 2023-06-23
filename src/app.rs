@@ -285,20 +285,34 @@ impl Component for WarModel {
 
 impl WarModel {
     fn get_results_table_node(&self, ctx: &Context<WarModel>, results: [f64; MAX_SOLDIERS + 1]) -> yew::virtual_dom::VNode {
-        let minimum = results.iter().enumerate().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
-        let maximum = results.iter().enumerate().rev().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
+        let mut minimum = results.iter().enumerate().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
+        let mut maximum = results.iter().enumerate().rev().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
+        let total_chance = results.iter().sum::<f64>();
+        let probable_result = results.iter().enumerate().max_by_key(|(_, r)| (**r * 10000.) as usize).map(|(i, _)| i).unwrap_or(0);
+        if minimum == 0 && maximum == 0 {
+            if results[probable_result] < 0.0001 {
+                return html!(<div class="no_results">{"No victory possible"}</div>);
+            }
+            minimum = probable_result.max(10) - 10;
+            maximum = (probable_result + 10).min(MAX_SOLDIERS);
+        }
         html!(
-            <table>
+            <table class={format!("probable_{}", probable_result)}>
                 <thead>
                     <tr>
-                        {for (minimum..=maximum).map(|i| html!(<th>{i}</th>))}
+                      <th class="total">{"Total"}</th>
+                        {for (minimum..=maximum).map(|i| {
+                            let r = results[i];
+                            html!(<th class={format!("result_{} odds_{:.0}", i, r * 10000.)}>{i}</th>)
+                        })}
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td class="total">{format!("{:.2}%", total_chance * 100.0)}</td>
                         {for (minimum..=maximum).map(|i| {
                             let r = results[i];
-                            html!(<td class={format!("odds_{:.2}", r * 100.0)}>{format!("{:.2}%", r * 100.0)}</td>)
+                            html!(<td class={format!("result_{} odds_{:.0}", i, r * 10000.)}>{format!("{:.2}%", r * 100.0)}</td>)
                         })}
                     </tr>
                 </tbody>
