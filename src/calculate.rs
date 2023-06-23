@@ -1,8 +1,4 @@
-use crate::app::{WarOdds, WarWeights, MAX_SOLDIERS, WEIGHT_COUNT};
-
-pub fn slot_for(attackers: usize, defenders: usize) -> usize {
-    attackers * (MAX_SOLDIERS + 1) + defenders
-}
+use crate::app::{WarOdds, WarWeights, MAX_SOLDIERS};
 
 pub fn get_combinations(my_count: usize, kills: usize) -> f64 {
     let mut on_balance = 1.;
@@ -23,39 +19,47 @@ fn odds_of_kills(my_count: usize, rate: f64, kills: usize) -> f64 {
 }
 
 fn normalize(weights: &mut WarWeights) {
-    let sum: f64 = weights.iter().sum();
-    for weight in weights.iter_mut() {
+    let sum: f64 = weights.0.iter().sum();
+    for weight in weights.0.iter_mut() {
         *weight /= sum;
     }
 }
 
 fn step_battle(weights: &WarWeights, odds: &WarOdds) -> WarWeights {
-    let mut attacker_weights = [0.; WEIGHT_COUNT];
+    let mut attacker_weights = WarWeights::default();
 
-    for attackers in 1..=MAX_SOLDIERS {
-        for defenders in 1..=MAX_SOLDIERS {
-            let slot = slot_for(attackers, defenders);
-            let weight = weights[slot];
+    for attackers in 0..=MAX_SOLDIERS {
+        for defenders in 0..=MAX_SOLDIERS {
+            let slot = WarWeights::slot_for(attackers, defenders);
+            let weight = weights.0[slot];
+            if attackers == 0 || defenders == 0 {
+                attacker_weights.0[slot] += weight;
+                continue;
+            }
             for attacker_kills in 0..(22.min(attackers)) {
                 let chance = odds_of_kills(attackers, odds.get_attacker_rate(), attacker_kills);
                 let new_defenders = if defenders > attacker_kills { defenders - attacker_kills } else { 0 };
-                attacker_weights[slot_for(attackers, new_defenders)] += weight * chance;
+                attacker_weights.0[WarWeights::slot_for(attackers, new_defenders)] += weight * chance;
             }
         }
     }
 
     normalize(&mut attacker_weights);
 
-    let mut new_weights = [0.; WEIGHT_COUNT];
+    let mut new_weights = WarWeights::default();
 
-    for attackers in 1..=MAX_SOLDIERS {
-        for defenders in 1..=MAX_SOLDIERS {
-            let slot = slot_for(attackers, defenders);
-            let weight = attacker_weights[slot];
+    for attackers in 0..=MAX_SOLDIERS {
+        for defenders in 0..=MAX_SOLDIERS {
+            let slot = WarWeights::slot_for(attackers, defenders);
+            let weight = attacker_weights.0[slot];
+            if attackers == 0 || defenders == 0 {
+                new_weights.0[slot] += weight;
+                continue;
+            }
             for defender_kills in 0..(22.min(defenders)) {
                 let chance: f64 = odds_of_kills(defenders, odds.get_defender_rate(), defender_kills);
                 let new_attackers = if attackers > defender_kills { attackers - defender_kills } else { 0 };
-                new_weights[slot_for(new_attackers, defenders)] += weight * chance;
+                new_weights.0[WarWeights::slot_for(new_attackers, defenders)] += weight * chance;
             }
         }
     }
@@ -66,9 +70,9 @@ fn step_battle(weights: &WarWeights, odds: &WarOdds) -> WarWeights {
 }
 
 pub fn calculate_weights(starting_attackers: f64, starting_defenders: f64, odds: &WarOdds) -> WarWeights {
-    let mut weights = [0.; WEIGHT_COUNT];
-    weights[slot_for(starting_attackers as usize, starting_defenders as usize)] = 1.;
-    for _ in 0..20 {
+    let mut weights = WarWeights::default();
+    weights.0[WarWeights::slot_for(starting_attackers as usize, starting_defenders as usize)] = 1.;
+    for _ in 0..odds.round_count {
         weights = step_battle(&weights, odds);
     }
     weights
@@ -128,10 +132,10 @@ mod tests {
 
     #[test]
     fn test_step_battle() {
-        let mut weights = [0.; WEIGHT_COUNT];
-        weights[slot_for(100, 100)] = 1.;
+        let mut weights = WarWeights::default();
+        weights.0[WarWeights::slot_for(100, 100)] = 1.;
         let odds = WarOdds::default();
         let new_weights = step_battle(&weights, &odds);
-        assert_eq!(new_weights[slot_for(90, 86)], 0.0097634899509056);
+        assert_eq!(new_weights.0[WarWeights::slot_for(90, 86)], 0.0097634899509056);
     }
 }

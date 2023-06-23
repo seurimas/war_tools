@@ -1,8 +1,8 @@
+use app::WarModel;
+
 mod app;
 mod calculate;
 
-use app::App;
-
 fn main() {
-    yew::Renderer::<App>::new().render();
+    yew::Renderer::<WarModel>::new().render();
 }
