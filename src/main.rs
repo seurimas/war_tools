@@ -1,4 +1,5 @@
 mod app;
+mod calculate;
 
 use app::App;
 
