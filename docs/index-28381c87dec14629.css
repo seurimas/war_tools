@@ -1,5 +1,41 @@
 #attacker_results table td, #defender_results table td {
   font-size: 8px;
+  position: relative;
+}
+
+#odds_settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  grid-template-areas: "numbers numbers" "attacker defender" "calculate calculate";
+}
+
+#numbers {
+  margin: auto;
+  grid-area: numbers;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+
+#attackers {
+  grid-area: attacker;
+  margin: auto;
+}
+
+#defenders {
+  grid-area: defender;
+  margin: auto;
+}
+
+#calculate {
+  margin-top: 16px;
+  grid-area: calculate;
+  margin: auto;
+}
+
+#results {
+  margin-bottom: 16px;
 }
 
 .total {
@@ -50016,402 +50052,1602 @@ td.total {
   color: white;
 }
 
-.probable_1 .result_1 {
+.probable_1 td.result_1 {
   border: 2px solid black;
 }
 
-.probable_2 .result_2 {
+.average_1 td.result_1::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_2 td.result_2 {
   border: 2px solid black;
+}
+
+.average_2 td.result_2::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_3 .result_3 {
+.probable_3 td.result_3 {
   border: 2px solid black;
+}
+
+.average_3 td.result_3::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_4 .result_4 {
+.probable_4 td.result_4 {
   border: 2px solid black;
 }
 
-.probable_5 .result_5 {
+.average_4 td.result_4::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_5 td.result_5 {
   border: 2px solid black;
+}
+
+.average_5 td.result_5::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_6 .result_6 {
+.probable_6 td.result_6 {
   border: 2px solid black;
+}
+
+.average_6 td.result_6::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_7 .result_7 {
+.probable_7 td.result_7 {
   border: 2px solid black;
 }
 
-.probable_8 .result_8 {
+.average_7 td.result_7::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_8 td.result_8 {
   border: 2px solid black;
+}
+
+.average_8 td.result_8::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_9 .result_9 {
+.probable_9 td.result_9 {
   border: 2px solid black;
+}
+
+.average_9 td.result_9::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_10 .result_10 {
+.probable_10 td.result_10 {
   border: 2px solid black;
 }
 
-.probable_11 .result_11 {
+.average_10 td.result_10::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_11 td.result_11 {
   border: 2px solid black;
+}
+
+.average_11 td.result_11::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_12 .result_12 {
+.probable_12 td.result_12 {
   border: 2px solid black;
+}
+
+.average_12 td.result_12::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_13 .result_13 {
+.probable_13 td.result_13 {
   border: 2px solid black;
+}
+
+.average_13 td.result_13::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_14 .result_14 {
+.probable_14 td.result_14 {
   border: 2px solid black;
+}
+
+.average_14 td.result_14::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_15 .result_15 {
+.probable_15 td.result_15 {
   border: 2px solid black;
 }
 
-.probable_16 .result_16 {
+.average_15 td.result_15::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_16 td.result_16 {
   border: 2px solid black;
+}
+
+.average_16 td.result_16::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_17 .result_17 {
+.probable_17 td.result_17 {
   border: 2px solid black;
+}
+
+.average_17 td.result_17::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_18 .result_18 {
+.probable_18 td.result_18 {
   border: 2px solid black;
 }
 
-.probable_19 .result_19 {
+.average_18 td.result_18::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_19 td.result_19 {
   border: 2px solid black;
+}
+
+.average_19 td.result_19::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_20 .result_20 {
+.probable_20 td.result_20 {
   border: 2px solid black;
+}
+
+.average_20 td.result_20::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_21 .result_21 {
+.probable_21 td.result_21 {
   border: 2px solid black;
 }
 
-.probable_22 .result_22 {
+.average_21 td.result_21::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_22 td.result_22 {
   border: 2px solid black;
+}
+
+.average_22 td.result_22::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_23 .result_23 {
+.probable_23 td.result_23 {
   border: 2px solid black;
+}
+
+.average_23 td.result_23::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_24 .result_24 {
+.probable_24 td.result_24 {
   border: 2px solid black;
 }
 
-.probable_25 .result_25 {
+.average_24 td.result_24::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_25 td.result_25 {
   border: 2px solid black;
+}
+
+.average_25 td.result_25::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_26 .result_26 {
+.probable_26 td.result_26 {
   border: 2px solid black;
 }
 
-.probable_27 .result_27 {
+.average_26 td.result_26::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_27 td.result_27 {
   border: 2px solid black;
+}
+
+.average_27 td.result_27::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_28 .result_28 {
+.probable_28 td.result_28 {
   border: 2px solid black;
+}
+
+.average_28 td.result_28::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_29 .result_29 {
+.probable_29 td.result_29 {
   border: 2px solid black;
 }
 
-.probable_30 .result_30 {
+.average_29 td.result_29::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_30 td.result_30 {
   border: 2px solid black;
+}
+
+.average_30 td.result_30::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_31 .result_31 {
+.probable_31 td.result_31 {
   border: 2px solid black;
+}
+
+.average_31 td.result_31::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_32 .result_32 {
+.probable_32 td.result_32 {
   border: 2px solid black;
 }
 
-.probable_33 .result_33 {
+.average_32 td.result_32::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_33 td.result_33 {
   border: 2px solid black;
+}
+
+.average_33 td.result_33::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_34 .result_34 {
+.probable_34 td.result_34 {
   border: 2px solid black;
+}
+
+.average_34 td.result_34::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_35 .result_35 {
+.probable_35 td.result_35 {
   border: 2px solid black;
 }
 
-.probable_36 .result_36 {
+.average_35 td.result_35::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_36 td.result_36 {
   border: 2px solid black;
+}
+
+.average_36 td.result_36::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_37 .result_37 {
+.probable_37 td.result_37 {
   border: 2px solid black;
+}
+
+.average_37 td.result_37::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_38 .result_38 {
+.probable_38 td.result_38 {
   border: 2px solid black;
+}
+
+.average_38 td.result_38::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_39 .result_39 {
+.probable_39 td.result_39 {
   border: 2px solid black;
+}
+
+.average_39 td.result_39::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_40 .result_40 {
+.probable_40 td.result_40 {
   border: 2px solid black;
 }
 
-.probable_41 .result_41 {
+.average_40 td.result_40::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_41 td.result_41 {
   border: 2px solid black;
+}
+
+.average_41 td.result_41::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_42 .result_42 {
+.probable_42 td.result_42 {
   border: 2px solid black;
+}
+
+.average_42 td.result_42::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_43 .result_43 {
+.probable_43 td.result_43 {
   border: 2px solid black;
 }
 
-.probable_44 .result_44 {
+.average_43 td.result_43::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_44 td.result_44 {
   border: 2px solid black;
+}
+
+.average_44 td.result_44::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_45 .result_45 {
+.probable_45 td.result_45 {
   border: 2px solid black;
+}
+
+.average_45 td.result_45::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_46 .result_46 {
+.probable_46 td.result_46 {
   border: 2px solid black;
 }
 
-.probable_47 .result_47 {
+.average_46 td.result_46::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_47 td.result_47 {
   border: 2px solid black;
+}
+
+.average_47 td.result_47::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_48 .result_48 {
+.probable_48 td.result_48 {
   border: 2px solid black;
+}
+
+.average_48 td.result_48::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_49 .result_49 {
+.probable_49 td.result_49 {
   border: 2px solid black;
 }
 
-.probable_50 .result_50 {
+.average_49 td.result_49::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_50 td.result_50 {
   border: 2px solid black;
+}
+
+.average_50 td.result_50::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_51 .result_51 {
+.probable_51 td.result_51 {
   border: 2px solid black;
 }
 
-.probable_52 .result_52 {
+.average_51 td.result_51::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_52 td.result_52 {
   border: 2px solid black;
+}
+
+.average_52 td.result_52::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_53 .result_53 {
+.probable_53 td.result_53 {
   border: 2px solid black;
+}
+
+.average_53 td.result_53::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_54 .result_54 {
+.probable_54 td.result_54 {
   border: 2px solid black;
 }
 
-.probable_55 .result_55 {
+.average_54 td.result_54::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_55 td.result_55 {
   border: 2px solid black;
+}
+
+.average_55 td.result_55::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_56 .result_56 {
+.probable_56 td.result_56 {
   border: 2px solid black;
+}
+
+.average_56 td.result_56::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_57 .result_57 {
+.probable_57 td.result_57 {
   border: 2px solid black;
 }
 
-.probable_58 .result_58 {
+.average_57 td.result_57::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_58 td.result_58 {
   border: 2px solid black;
+}
+
+.average_58 td.result_58::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_59 .result_59 {
+.probable_59 td.result_59 {
   border: 2px solid black;
+}
+
+.average_59 td.result_59::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_60 .result_60 {
+.probable_60 td.result_60 {
   border: 2px solid black;
 }
 
-.probable_61 .result_61 {
+.average_60 td.result_60::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_61 td.result_61 {
   border: 2px solid black;
+}
+
+.average_61 td.result_61::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_62 .result_62 {
+.probable_62 td.result_62 {
   border: 2px solid black;
+}
+
+.average_62 td.result_62::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_63 .result_63 {
+.probable_63 td.result_63 {
   border: 2px solid black;
+}
+
+.average_63 td.result_63::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_64 .result_64 {
+.probable_64 td.result_64 {
   border: 2px solid black;
+}
+
+.average_64 td.result_64::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_65 .result_65 {
+.probable_65 td.result_65 {
   border: 2px solid black;
 }
 
-.probable_66 .result_66 {
+.average_65 td.result_65::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_66 td.result_66 {
   border: 2px solid black;
+}
+
+.average_66 td.result_66::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_67 .result_67 {
+.probable_67 td.result_67 {
   border: 2px solid black;
+}
+
+.average_67 td.result_67::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_68 .result_68 {
+.probable_68 td.result_68 {
   border: 2px solid black;
 }
 
-.probable_69 .result_69 {
+.average_68 td.result_68::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_69 td.result_69 {
   border: 2px solid black;
+}
+
+.average_69 td.result_69::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_70 .result_70 {
+.probable_70 td.result_70 {
   border: 2px solid black;
+}
+
+.average_70 td.result_70::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_71 .result_71 {
+.probable_71 td.result_71 {
   border: 2px solid black;
 }
 
-.probable_72 .result_72 {
+.average_71 td.result_71::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_72 td.result_72 {
   border: 2px solid black;
+}
+
+.average_72 td.result_72::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_73 .result_73 {
+.probable_73 td.result_73 {
   border: 2px solid black;
+}
+
+.average_73 td.result_73::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_74 .result_74 {
+.probable_74 td.result_74 {
   border: 2px solid black;
 }
 
-.probable_75 .result_75 {
+.average_74 td.result_74::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_75 td.result_75 {
   border: 2px solid black;
+}
+
+.average_75 td.result_75::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_76 .result_76 {
+.probable_76 td.result_76 {
   border: 2px solid black;
 }
 
-.probable_77 .result_77 {
+.average_76 td.result_76::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_77 td.result_77 {
   border: 2px solid black;
+}
+
+.average_77 td.result_77::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_78 .result_78 {
+.probable_78 td.result_78 {
   border: 2px solid black;
+}
+
+.average_78 td.result_78::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_79 .result_79 {
+.probable_79 td.result_79 {
   border: 2px solid black;
 }
 
-.probable_80 .result_80 {
+.average_79 td.result_79::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_80 td.result_80 {
   border: 2px solid black;
+}
+
+.average_80 td.result_80::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_81 .result_81 {
+.probable_81 td.result_81 {
   border: 2px solid black;
+}
+
+.average_81 td.result_81::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_82 .result_82 {
+.probable_82 td.result_82 {
   border: 2px solid black;
 }
 
-.probable_83 .result_83 {
+.average_82 td.result_82::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_83 td.result_83 {
   border: 2px solid black;
+}
+
+.average_83 td.result_83::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_84 .result_84 {
+.probable_84 td.result_84 {
   border: 2px solid black;
+}
+
+.average_84 td.result_84::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_85 .result_85 {
+.probable_85 td.result_85 {
   border: 2px solid black;
 }
 
-.probable_86 .result_86 {
+.average_85 td.result_85::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_86 td.result_86 {
   border: 2px solid black;
+}
+
+.average_86 td.result_86::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_87 .result_87 {
+.probable_87 td.result_87 {
   border: 2px solid black;
+}
+
+.average_87 td.result_87::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_88 .result_88 {
+.probable_88 td.result_88 {
   border: 2px solid black;
+}
+
+.average_88 td.result_88::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_89 .result_89 {
+.probable_89 td.result_89 {
   border: 2px solid black;
+}
+
+.average_89 td.result_89::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_90 .result_90 {
+.probable_90 td.result_90 {
   border: 2px solid black;
 }
 
-.probable_91 .result_91 {
+.average_90 td.result_90::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_91 td.result_91 {
   border: 2px solid black;
+}
+
+.average_91 td.result_91::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_92 .result_92 {
+.probable_92 td.result_92 {
   border: 2px solid black;
+}
+
+.average_92 td.result_92::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_93 .result_93 {
+.probable_93 td.result_93 {
   border: 2px solid black;
 }
 
-.probable_94 .result_94 {
+.average_93 td.result_93::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_94 td.result_94 {
   border: 2px solid black;
+}
+
+.average_94 td.result_94::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_95 .result_95 {
+.probable_95 td.result_95 {
   border: 2px solid black;
+}
+
+.average_95 td.result_95::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_96 .result_96 {
+.probable_96 td.result_96 {
   border: 2px solid black;
 }
 
-.probable_97 .result_97 {
+.average_96 td.result_96::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_97 td.result_97 {
   border: 2px solid black;
+}
+
+.average_97 td.result_97::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_98 .result_98 {
+.probable_98 td.result_98 {
   border: 2px solid black;
+}
+
+.average_98 td.result_98::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.probable_99 .result_99 {
+.probable_99 td.result_99 {
   border: 2px solid black;
 }
 
-.probable_100 .result_100 {
+.average_99 td.result_99::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.probable_100 td.result_100 {
   border: 2px solid black;
+}
+
+.average_100 td.result_100::after {
+  content: "AVG";
+  color: black;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }

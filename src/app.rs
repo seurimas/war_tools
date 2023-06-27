@@ -13,6 +13,8 @@ pub struct WarOdds {
     pub fortified_def_bonus: f64,
     pub claimed_def_bonus: f64,
     pub city_def_bonus: f64,
+    pub archer_attack_malus: f64,
+    pub archer_defense_malus: f64,
     pub attacker_present: bool,
     pub defender_present: bool,
     pub attacker_blessed: bool,
@@ -22,6 +24,8 @@ pub struct WarOdds {
     pub defender_claimed: bool,
     pub attacker_city: bool,
     pub defender_city: bool,
+    pub attacker_archers: bool,
+    pub defender_archers: bool,
     pub round_count: usize,
 }
 
@@ -30,19 +34,23 @@ impl Default for WarOdds {
         WarOdds {
             base_chance: 10.,
             commander_bonus: 1.,
-            blessing_bonus: 3.,
-            fortified_def_bonus: 2.,
+            blessing_bonus: 2.,
+            fortified_def_bonus: 1.,
             claimed_def_bonus: 1.,
-            city_def_bonus: 5.,
+            city_def_bonus: 2.,
             attacker_present: true,
-            defender_present: true,
-            attacker_blessed: false,
-            defender_blessed: false,
+            defender_present: false,
+            attacker_blessed: true,
+            defender_blessed: true,
             defender_fortified: false,
             attacker_claimed: false,
             defender_claimed: false,
             attacker_city: false,
             defender_city: false,
+            attacker_archers: false,
+            defender_archers: false,
+            archer_attack_malus: 1.,
+            archer_defense_malus: 1.,
             round_count: 20,
         }
     }
@@ -66,6 +74,12 @@ impl WarOdds {
         if self.defender_city {
             rate -= self.city_def_bonus;
         }
+        if self.defender_archers {
+            rate += self.archer_defense_malus;
+        }
+        if self.attacker_archers {
+            rate -= self.archer_attack_malus;
+        }
         rate / 100.
     }
 
@@ -82,6 +96,12 @@ impl WarOdds {
         }
         if self.attacker_city {
             rate -= self.city_def_bonus;
+        }
+        if self.attacker_archers {
+            rate += self.archer_defense_malus;
+        }
+        if self.defender_archers {
+            rate -= self.archer_attack_malus;
         }
         rate / 100.
     }
@@ -155,6 +175,8 @@ pub enum Msg {
     UpdateFortifiedDefBonus(String),
     UpdateClaimedDefBonus(String),
     UpdateCityDefBonus(String),
+    UpdateArcherAttackMalus(String),
+    UpdateArcherDefenseMalus(String),
     UpdateStartingAttackers(String),
     UpdateStartingDefenders(String),
     UpdateRoundCount(String),
@@ -167,6 +189,8 @@ pub enum Msg {
     ToggleDefenderClaimed,
     ToggleAttackerCity,
     ToggleDefenderCity,
+    ToggleAttackerArchers,
+    ToggleDefenderArchers,
     Calculate,
 }
 
@@ -233,6 +257,16 @@ impl Component for WarModel {
                     self.odds.city_def_bonus = val;
                 }
             }
+            Msg::UpdateArcherAttackMalus(val) => {
+                if let Ok(val) = val.parse::<f64>() {
+                    self.odds.archer_attack_malus = val;
+                }
+            }
+            Msg::UpdateArcherDefenseMalus(val) => {
+                if let Ok(val) = val.parse::<f64>() {
+                    self.odds.archer_defense_malus = val;
+                }
+            }
             Msg::UpdateStartingAttackers(val) => {
                 if let Ok(val) = val.parse::<f64>() {
                     self.starting_attackers = val;
@@ -275,6 +309,12 @@ impl Component for WarModel {
             Msg::ToggleDefenderCity => {
                 self.odds.defender_city = !self.odds.defender_city;
             }
+            Msg::ToggleAttackerArchers => {
+                self.odds.attacker_archers = !self.odds.attacker_archers;
+            }
+            Msg::ToggleDefenderArchers => {
+                self.odds.defender_archers = !self.odds.defender_archers;
+            }
             Msg::Calculate => {
                 self.weights = Some(calculate_weights(self.starting_attackers, self.starting_defenders, &self.odds));
             }
@@ -287,6 +327,7 @@ impl WarModel {
     fn get_results_table_node(&self, ctx: &Context<WarModel>, results: [f64; MAX_SOLDIERS + 1]) -> yew::virtual_dom::VNode {
         let mut minimum = results.iter().enumerate().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
         let mut maximum = results.iter().enumerate().rev().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
+        let average = results.iter().enumerate().map(|(i, r)| i as f64 * r).sum::<f64>() / results.iter().sum::<f64>();
         let total_chance = results.iter().sum::<f64>();
         let probable_result = results.iter().enumerate().max_by_key(|(_, r)| (**r * 10000.) as usize).map(|(i, _)| i).unwrap_or(0);
         if minimum == 0 && maximum == 0 {
@@ -297,7 +338,7 @@ impl WarModel {
             maximum = (probable_result + 10).min(MAX_SOLDIERS);
         }
         html!(
-            <table class={format!("probable_{}", probable_result)}>
+            <table class={format!("probable_{} average_{:.0}", probable_result, average.round())}>
                 <thead>
                     <tr>
                       <th class="total">{"Total"}</th>
@@ -346,79 +387,103 @@ impl WarModel {
     fn get_settings_node(&self, ctx: &Context<WarModel>) -> yew::virtual_dom::VNode {
         let vnode = html! (
             <div id="odds_settings">
-                <div>
-                    <label for="base_chance">{ "Base Chance: " }</label>
-                    <input id="base_chance" type="number" value={ self.odds.base_chance.to_string() } oninput={ ctx.link().callback(|e: InputEvent| Msg::UpdateBaseChance(get_value_from_input_event(e))) } />
+                <div id="numbers">
+                    <div>
+                        <label for="base_chance">{ "Base Chance: " }</label>
+                        <input id="base_chance" type="number" value={ self.odds.base_chance.to_string() } oninput={ ctx.link().callback(|e: InputEvent| Msg::UpdateBaseChance(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="attacker_bonus">{ "Commander Attack Bonus: " }</label>
+                        <input id="attacker_bonus" type="number" value={ self.odds.commander_bonus.to_string() } oninput={ ctx.link().callback(|e: InputEvent| Msg::UpdateAttackerBonus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="blessing_bonus">{ "Blessing Bonus: " }</label>
+                        <input id="blessing_bonus" type="number" value={ self.odds.blessing_bonus.to_string() } oninput={ ctx.link().callback(|e: InputEvent| Msg::UpdateBlessingBonus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="fortified_def_bonus">{ "Fortified Def Bonus: " }</label>
+                        <input id="fortified_def_bonus" type="number" value={ self.odds.fortified_def_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateFortifiedDefBonus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="claimed_def_bonus">{ "Claimed Def Bonus: " }</label>
+                        <input id="claimed_def_bonus" type="number" value={ self.odds.claimed_def_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateClaimedDefBonus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="city_def_bonus">{ "City Def Bonus: " }</label>
+                        <input id="city_def_bonus" type="number" value={ self.odds.city_def_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateCityDefBonus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="archer_attack_malus">{ "Archer Attack Malus: " }</label>
+                        <input id="archer_attack_malus" type="number" value={ self.odds.archer_attack_malus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateArcherAttackMalus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="archer_defense_malus">{ "Archer Defense Malus: " }</label>
+                        <input id="archer_def_malus" type="number" value={ self.odds.archer_defense_malus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateArcherDefenseMalus(get_value_from_input_event(e))) } />
+                    </div>
                 </div>
-                <div>
-                    <label for="attacker_bonus">{ "Attacker Bonus: " }</label>
-                    <input id="attacker_bonus" type="number" value={ self.odds.commander_bonus.to_string() } oninput={ ctx.link().callback(|e: InputEvent| Msg::UpdateAttackerBonus(get_value_from_input_event(e))) } />
+                <div id="attackers">
+                    <div>
+                        <label for="starting_attackers">{ "Starting Attackers: " }</label>
+                        <input id="starting_attackers" type="number" value={ self.starting_attackers.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateStartingAttackers(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="attacker_present">{ "Attacker Commander Present: " }</label>
+                        <input id="attacker_present" type="checkbox" checked={ self.odds.attacker_present } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerPresent) } />
+                    </div>
+                    <div>
+                        <label for="attacker_blessed">{ "Attacker Blessed: " }</label>
+                        <input id="attacker_blessed" type="checkbox" checked={ self.odds.attacker_blessed } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerBlessed) } />
+                    </div>
+                    <div>
+                        <label for="attacker_claimed">{ "Attacker Claimed: " }</label>
+                        <input id="attacker_claimed" type="checkbox" checked={ self.odds.attacker_claimed } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerClaimed) } />
+                    </div>
+                    <div>
+                        <label for="attacker_city">{ "Attacker City: " }</label>
+                        <input id="attacker_city" type="checkbox" checked={ self.odds.attacker_city } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerCity) } />
+                    </div>
+                    <div>
+                        <label for="attacker_archers">{ "Attacker are Archers: " }</label>
+                        <input id="attacker_archers" type="checkbox" checked={ self.odds.attacker_archers } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerArchers) } />
+                    </div>
                 </div>
-                <div>
-                    <label for="blessing_bonus">{ "Blessing Bonus: " }</label>
-                    <input id="blessing_bonus" type="number" value={ self.odds.blessing_bonus.to_string() } oninput={ ctx.link().callback(|e: InputEvent| Msg::UpdateBlessingBonus(get_value_from_input_event(e))) } />
+                <div id="defenders">
+                    <div>
+                        <label for="starting_defenders">{ "Starting Defenders: " }</label>
+                        <input id="starting_defenders" type="number" value={ self.starting_defenders.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateStartingDefenders(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="defender_present">{ "Defender Commander Present: " }</label>
+                        <input id="defender_present" type="checkbox" checked={ self.odds.defender_present } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderPresent) } />
+                    </div>
+                    <div>
+                        <label for="defender_blessed">{ "Defender Blessed: " }</label>
+                        <input id="defender_blessed" type="checkbox" checked={ self.odds.defender_blessed } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderBlessed) } />
+                    </div>
+                    <div>
+                        <label for="defender_claimed">{ "Defender Claimed: " }</label>
+                        <input id="defender_claimed" type="checkbox" checked={ self.odds.defender_claimed } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderClaimed) } />
+                    </div>
+                    <div>
+                        <label for="defender_fortified">{ "Defender Fortified: " }</label>
+                        <input id="defender_fortified" type="checkbox" checked={ self.odds.defender_fortified } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderFortified) } />
+                    </div>
+                    <div>
+                        <label for="defender_city">{ "Defender City: " }</label>
+                        <input id="defender_city" type="checkbox" checked={ self.odds.defender_city } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderCity) } />
+                    </div>
+                    <div>
+                        <label for="defender_archers">{ "Defender Archers: " }</label>
+                        <input id="defender_archers" type="checkbox" checked={ self.odds.defender_archers } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderArchers) } />
+                    </div>
                 </div>
-                <div>
-                    <label for="fortified_def_bonus">{ "Fortified Def Bonus: " }</label>
-                    <input id="fortified_def_bonus" type="number" value={ self.odds.fortified_def_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateFortifiedDefBonus(get_value_from_input_event(e))) } />
+                <div id="calculate">
+                    <div>
+                        <label for="round_count">{ "Round Count: " }</label>
+                        <input id="round_count" type="number" value={ self.odds.round_count.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateRoundCount(get_value_from_input_event(e))) } />
+                    </div>
+                    <button onclick={ ctx.link().callback(|_| Msg::Calculate) }>{ "Calculate" }</button>
                 </div>
-                <div>
-                    <label for="claimed_def_bonus">{ "Claimed Def Bonus: " }</label>
-                    <input id="claimed_def_bonus" type="number" value={ self.odds.claimed_def_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateClaimedDefBonus(get_value_from_input_event(e))) } />
-                </div>
-                <div>
-                    <label for="city_def_bonus">{ "City Def Bonus: " }</label>
-                    <input id="city_def_bonus" type="number" value={ self.odds.city_def_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateCityDefBonus(get_value_from_input_event(e))) } />
-                </div>
-                <div>
-                    <label for="starting_attackers">{ "Starting Attackers: " }</label>
-                    <input id="starting_attackers" type="number" value={ self.starting_attackers.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateStartingAttackers(get_value_from_input_event(e))) } />
-                </div>
-                <div>
-                    <label for="starting_defenders">{ "Starting Defenders: " }</label>
-                    <input id="starting_defenders" type="number" value={ self.starting_defenders.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateStartingDefenders(get_value_from_input_event(e))) } />
-                </div>
-                <div>
-                    <label for="attacker_present">{ "Attacker Present: " }</label>
-                    <input id="attacker_present" type="checkbox" checked={ self.odds.attacker_present } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerPresent) } />
-                </div>
-                <div>
-                    <label for="defender_present">{ "Defender Present: " }</label>
-                    <input id="defender_present" type="checkbox" checked={ self.odds.defender_present } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderPresent) } />
-                </div>
-                <div>
-                    <label for="attacker_blessed">{ "Attacker Blessed: " }</label>
-                    <input id="attacker_blessed" type="checkbox" checked={ self.odds.attacker_blessed } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerBlessed) } />
-                </div>
-                <div>
-                    <label for="defender_blessed">{ "Defender Blessed: " }</label>
-                    <input id="defender_blessed" type="checkbox" checked={ self.odds.defender_blessed } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderBlessed) } />
-                </div>
-                <div>
-                    <label for="attacker_claimed">{ "Attacker Claimed: " }</label>
-                    <input id="attacker_claimed" type="checkbox" checked={ self.odds.attacker_claimed } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerClaimed) } />
-                </div>
-                <div>
-                    <label for="defender_claimed">{ "Defender Claimed: " }</label>
-                    <input id="defender_claimed" type="checkbox" checked={ self.odds.defender_claimed } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderClaimed) } />
-                </div>
-                <div>
-                    <label for="defender_fortified">{ "Defender Fortified: " }</label>
-                    <input id="defender_fortified" type="checkbox" checked={ self.odds.defender_fortified } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderFortified) } />
-                </div>
-                <div>
-                    <label for="attacker_city">{ "Attacker City: " }</label>
-                    <input id="attacker_city" type="checkbox" checked={ self.odds.attacker_city } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerCity) } />
-                </div>
-                <div>
-                    <label for="defender_city">{ "Defender City: " }</label>
-                    <input id="defender_city" type="checkbox" checked={ self.odds.defender_city } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderCity) } />
-                </div>
-                <div>
-                    <label for="round_count">{ "Round Count: " }</label>
-                    <input id="round_count" type="number" value={ self.odds.round_count.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateRoundCount(get_value_from_input_event(e))) } />
-                </div>
-                <button onclick={ ctx.link().callback(|_| Msg::Calculate) }>{ "Calculate" }</button>
             </div>
         );
         vnode
