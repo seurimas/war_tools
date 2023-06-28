@@ -329,6 +329,9 @@ impl WarModel {
         let mut maximum = results.iter().enumerate().rev().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
         let average = results.iter().enumerate().map(|(i, r)| i as f64 * r).sum::<f64>() / results.iter().sum::<f64>();
         let total_chance = results.iter().sum::<f64>();
+        let median = results.iter().enumerate().map(|(i, r)| {
+            results.iter().enumerate().filter(|(j, _)| *j <= i).map(|(_, r)| r).sum::<f64>()
+        }).enumerate().find(|(_, r)| *r >= total_chance / 2.).map(|(i, _)| i).unwrap_or(0) as f64;
         let probable_result = results.iter().enumerate().max_by_key(|(_, r)| (**r * 10000.) as usize).map(|(i, _)| i).unwrap_or(0);
         if minimum == 0 && maximum == 0 {
             if results[probable_result] < 0.0001 {
@@ -338,7 +341,7 @@ impl WarModel {
             maximum = (probable_result + 10).min(MAX_SOLDIERS);
         }
         html!(
-            <table class={format!("probable_{} average_{:.0}", probable_result, average.round())}>
+            <table class={format!("probable_{} average_{:.0} median_{:0}", probable_result, average.round(), median.round())}>
                 <thead>
                     <tr>
                       <th class="total">{"Total"}</th>

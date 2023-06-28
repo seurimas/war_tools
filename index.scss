@@ -5,6 +5,10 @@ $margins: 16px;
   position: relative;
 }
 
+#attacker_results table th, #defender_results table th {
+  position: relative;
+}
+
 #odds_settings {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -77,6 +81,19 @@ td.total {
     left: 0;
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+  }
+
+  .median_#{$i} th.result_#{$i}::after {
+    content: "MEDIAN";
+    font-size: 8px;
+    color: black;
+    text-align: center;
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    height: 8px;
     box-sizing: border-box;
   }
 }

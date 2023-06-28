@@ -3,6 +3,10 @@
   position: relative;
 }
 
+#attacker_results table th, #defender_results table th {
+  position: relative;
+}
+
 #odds_settings {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -50068,6 +50072,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_1 th.result_1::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_2 td.result_2 {
   border: 2px solid black;
 }
@@ -50081,6 +50098,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_2 th.result_2::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50100,6 +50130,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_3 th.result_3::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_4 td.result_4 {
   border: 2px solid black;
 }
@@ -50113,6 +50156,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_4 th.result_4::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50132,6 +50188,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_5 th.result_5::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_6 td.result_6 {
   border: 2px solid black;
 }
@@ -50145,6 +50214,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_6 th.result_6::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50164,6 +50246,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_7 th.result_7::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_8 td.result_8 {
   border: 2px solid black;
 }
@@ -50177,6 +50272,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_8 th.result_8::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50196,6 +50304,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_9 th.result_9::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_10 td.result_10 {
   border: 2px solid black;
 }
@@ -50209,6 +50330,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_10 th.result_10::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50228,6 +50362,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_11 th.result_11::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_12 td.result_12 {
   border: 2px solid black;
 }
@@ -50241,6 +50388,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_12 th.result_12::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50260,6 +50420,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_13 th.result_13::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_14 td.result_14 {
   border: 2px solid black;
 }
@@ -50273,6 +50446,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_14 th.result_14::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50292,6 +50478,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_15 th.result_15::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_16 td.result_16 {
   border: 2px solid black;
 }
@@ -50305,6 +50504,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_16 th.result_16::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50324,6 +50536,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_17 th.result_17::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_18 td.result_18 {
   border: 2px solid black;
 }
@@ -50337,6 +50562,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_18 th.result_18::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50356,6 +50594,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_19 th.result_19::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_20 td.result_20 {
   border: 2px solid black;
 }
@@ -50369,6 +50620,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_20 th.result_20::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50388,6 +50652,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_21 th.result_21::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_22 td.result_22 {
   border: 2px solid black;
 }
@@ -50401,6 +50678,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_22 th.result_22::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50420,6 +50710,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_23 th.result_23::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_24 td.result_24 {
   border: 2px solid black;
 }
@@ -50433,6 +50736,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_24 th.result_24::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50452,6 +50768,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_25 th.result_25::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_26 td.result_26 {
   border: 2px solid black;
 }
@@ -50465,6 +50794,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_26 th.result_26::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50484,6 +50826,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_27 th.result_27::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_28 td.result_28 {
   border: 2px solid black;
 }
@@ -50497,6 +50852,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_28 th.result_28::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50516,6 +50884,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_29 th.result_29::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_30 td.result_30 {
   border: 2px solid black;
 }
@@ -50529,6 +50910,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_30 th.result_30::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50548,6 +50942,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_31 th.result_31::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_32 td.result_32 {
   border: 2px solid black;
 }
@@ -50561,6 +50968,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_32 th.result_32::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50580,6 +51000,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_33 th.result_33::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_34 td.result_34 {
   border: 2px solid black;
 }
@@ -50593,6 +51026,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_34 th.result_34::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50612,6 +51058,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_35 th.result_35::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_36 td.result_36 {
   border: 2px solid black;
 }
@@ -50625,6 +51084,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_36 th.result_36::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50644,6 +51116,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_37 th.result_37::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_38 td.result_38 {
   border: 2px solid black;
 }
@@ -50657,6 +51142,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_38 th.result_38::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50676,6 +51174,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_39 th.result_39::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_40 td.result_40 {
   border: 2px solid black;
 }
@@ -50689,6 +51200,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_40 th.result_40::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50708,6 +51232,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_41 th.result_41::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_42 td.result_42 {
   border: 2px solid black;
 }
@@ -50721,6 +51258,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_42 th.result_42::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50740,6 +51290,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_43 th.result_43::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_44 td.result_44 {
   border: 2px solid black;
 }
@@ -50753,6 +51316,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_44 th.result_44::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50772,6 +51348,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_45 th.result_45::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_46 td.result_46 {
   border: 2px solid black;
 }
@@ -50785,6 +51374,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_46 th.result_46::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50804,6 +51406,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_47 th.result_47::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_48 td.result_48 {
   border: 2px solid black;
 }
@@ -50817,6 +51432,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_48 th.result_48::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50836,6 +51464,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_49 th.result_49::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_50 td.result_50 {
   border: 2px solid black;
 }
@@ -50849,6 +51490,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_50 th.result_50::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50868,6 +51522,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_51 th.result_51::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_52 td.result_52 {
   border: 2px solid black;
 }
@@ -50881,6 +51548,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_52 th.result_52::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50900,6 +51580,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_53 th.result_53::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_54 td.result_54 {
   border: 2px solid black;
 }
@@ -50913,6 +51606,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_54 th.result_54::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50932,6 +51638,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_55 th.result_55::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_56 td.result_56 {
   border: 2px solid black;
 }
@@ -50945,6 +51664,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_56 th.result_56::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50964,6 +51696,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_57 th.result_57::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_58 td.result_58 {
   border: 2px solid black;
 }
@@ -50977,6 +51722,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_58 th.result_58::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -50996,6 +51754,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_59 th.result_59::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_60 td.result_60 {
   border: 2px solid black;
 }
@@ -51009,6 +51780,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_60 th.result_60::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51028,6 +51812,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_61 th.result_61::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_62 td.result_62 {
   border: 2px solid black;
 }
@@ -51041,6 +51838,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_62 th.result_62::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51060,6 +51870,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_63 th.result_63::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_64 td.result_64 {
   border: 2px solid black;
 }
@@ -51073,6 +51896,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_64 th.result_64::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51092,6 +51928,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_65 th.result_65::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_66 td.result_66 {
   border: 2px solid black;
 }
@@ -51105,6 +51954,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_66 th.result_66::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51124,6 +51986,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_67 th.result_67::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_68 td.result_68 {
   border: 2px solid black;
 }
@@ -51137,6 +52012,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_68 th.result_68::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51156,6 +52044,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_69 th.result_69::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_70 td.result_70 {
   border: 2px solid black;
 }
@@ -51169,6 +52070,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_70 th.result_70::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51188,6 +52102,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_71 th.result_71::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_72 td.result_72 {
   border: 2px solid black;
 }
@@ -51201,6 +52128,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_72 th.result_72::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51220,6 +52160,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_73 th.result_73::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_74 td.result_74 {
   border: 2px solid black;
 }
@@ -51233,6 +52186,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_74 th.result_74::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51252,6 +52218,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_75 th.result_75::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_76 td.result_76 {
   border: 2px solid black;
 }
@@ -51265,6 +52244,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_76 th.result_76::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51284,6 +52276,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_77 th.result_77::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_78 td.result_78 {
   border: 2px solid black;
 }
@@ -51297,6 +52302,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_78 th.result_78::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51316,6 +52334,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_79 th.result_79::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_80 td.result_80 {
   border: 2px solid black;
 }
@@ -51329,6 +52360,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_80 th.result_80::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51348,6 +52392,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_81 th.result_81::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_82 td.result_82 {
   border: 2px solid black;
 }
@@ -51361,6 +52418,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_82 th.result_82::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51380,6 +52450,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_83 th.result_83::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_84 td.result_84 {
   border: 2px solid black;
 }
@@ -51393,6 +52476,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_84 th.result_84::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51412,6 +52508,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_85 th.result_85::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_86 td.result_86 {
   border: 2px solid black;
 }
@@ -51425,6 +52534,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_86 th.result_86::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51444,6 +52566,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_87 th.result_87::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_88 td.result_88 {
   border: 2px solid black;
 }
@@ -51457,6 +52592,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_88 th.result_88::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51476,6 +52624,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_89 th.result_89::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_90 td.result_90 {
   border: 2px solid black;
 }
@@ -51489,6 +52650,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_90 th.result_90::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51508,6 +52682,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_91 th.result_91::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_92 td.result_92 {
   border: 2px solid black;
 }
@@ -51521,6 +52708,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_92 th.result_92::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51540,6 +52740,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_93 th.result_93::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_94 td.result_94 {
   border: 2px solid black;
 }
@@ -51553,6 +52766,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_94 th.result_94::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51572,6 +52798,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_95 th.result_95::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_96 td.result_96 {
   border: 2px solid black;
 }
@@ -51585,6 +52824,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_96 th.result_96::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51604,6 +52856,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_97 th.result_97::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_98 td.result_98 {
   border: 2px solid black;
 }
@@ -51617,6 +52882,19 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_98 th.result_98::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
 
@@ -51636,6 +52914,19 @@ td.total {
   box-sizing: border-box;
 }
 
+.median_99 th.result_99::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
+  box-sizing: border-box;
+}
+
 .probable_100 td.result_100 {
   border: 2px solid black;
 }
@@ -51649,5 +52940,18 @@ td.total {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+}
+
+.median_100 th.result_100::after {
+  content: "MEDIAN";
+  font-size: 8px;
+  color: black;
+  text-align: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 8px;
   box-sizing: border-box;
 }
