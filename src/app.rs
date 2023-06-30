@@ -15,6 +15,7 @@ pub struct WarOdds {
     pub city_def_bonus: f64,
     pub archer_attack_malus: f64,
     pub archer_defense_malus: f64,
+    pub limited_engagements: usize,
     pub attacker_present: bool,
     pub defender_present: bool,
     pub attacker_blessed: bool,
@@ -38,6 +39,7 @@ impl Default for WarOdds {
             fortified_def_bonus: 1.,
             claimed_def_bonus: 1.,
             city_def_bonus: 2.,
+            limited_engagements: 0,
             attacker_present: true,
             defender_present: false,
             attacker_blessed: true,
@@ -175,6 +177,7 @@ pub enum Msg {
     UpdateFortifiedDefBonus(String),
     UpdateClaimedDefBonus(String),
     UpdateCityDefBonus(String),
+    UpdateLimitedEngagements(String),
     UpdateArcherAttackMalus(String),
     UpdateArcherDefenseMalus(String),
     UpdateStartingAttackers(String),
@@ -265,6 +268,11 @@ impl Component for WarModel {
             Msg::UpdateArcherDefenseMalus(val) => {
                 if let Ok(val) = val.parse::<f64>() {
                     self.odds.archer_defense_malus = val;
+                }
+            }
+            Msg::UpdateLimitedEngagements(val) => {
+                if let Ok(val) = val.parse::<usize>() {
+                    self.odds.limited_engagements = val;
                 }
             }
             Msg::UpdateStartingAttackers(val) => {
@@ -422,6 +430,10 @@ impl WarModel {
                     <div>
                         <label for="archer_defense_malus">{ "Archer Defense Malus: " }</label>
                         <input id="archer_def_malus" type="number" value={ self.odds.archer_defense_malus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateArcherDefenseMalus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="limited_engagements">{ "Limited Engagements: " }</label>
+                        <input id="limited_engagements" type="number" value={ self.odds.limited_engagements.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateLimitedEngagements(get_value_from_input_event(e))) } />
                     </div>
                 </div>
                 <div id="attackers">

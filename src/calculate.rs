@@ -37,7 +37,8 @@ fn step_battle(weights: &WarWeights, odds: &WarOdds) -> WarWeights {
                 continue;
             }
             for attacker_kills in 0..=(22.min(attackers)) {
-                let chance = odds_of_kills(attackers, odds.get_attacker_rate(), attacker_kills);
+                let engagements = if odds.limited_engagements != 0 { attackers.min(odds.limited_engagements) } else { attackers };
+                let chance = odds_of_kills(engagements, odds.get_attacker_rate(), attacker_kills);
                 let new_defenders = if defenders > attacker_kills { defenders - attacker_kills } else { 0 };
                 attacker_weights.0[WarWeights::slot_for(attackers, new_defenders)] += weight * chance;
             }
@@ -57,7 +58,8 @@ fn step_battle(weights: &WarWeights, odds: &WarOdds) -> WarWeights {
                 continue;
             }
             for defender_kills in 0..=(22.min(defenders)) {
-                let chance: f64 = odds_of_kills(defenders, odds.get_defender_rate(), defender_kills);
+                let engagements = if odds.limited_engagements != 0 { defenders.min(odds.limited_engagements) } else { defenders };
+                let chance: f64 = odds_of_kills(engagements, odds.get_defender_rate(), defender_kills);
                 let new_attackers = if attackers > defender_kills { attackers - defender_kills } else { 0 };
                 new_weights.0[WarWeights::slot_for(new_attackers, defenders)] += weight * chance;
             }
