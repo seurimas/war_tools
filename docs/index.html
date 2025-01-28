@@ -1,9 +1,15 @@
 <!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <title>Trunk Template</title>
-    <link rel="stylesheet" href="/war_tools/index-2c1d54501929de45.css">
+    <link rel="stylesheet" href="/war_tools/index-2c1d54501929de45.css" integrity="sha384-hDOT_2Rc3P5SNq84S4gSu9IMy1i2RN7239Z4G38yjd5TPUX4U4El0Q5ODrZ9fwb_">
   
-<link rel="preload" href="/war_tools/trunk-template-615b5f068cd34e8b_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/war_tools/trunk-template-615b5f068cd34e8b.js"></head>
+<link rel="preload" href="/war_tools/trunk-template-72555d1de151be99_bg.wasm" as="fetch" type="application/wasm" crossorigin="anonymous" integrity="sha384-fPpd3W8kvM0a7J7cmPOmq_qPZX-RQtN6ytKUHiFxlrH-GL3-06PGazpTvx49aMV4">
+<link rel="modulepreload" href="/war_tools/trunk-template-72555d1de151be99.js" crossorigin="anonymous" integrity="sha384-enANE2tbCKcPR5hJuAmytORo3SqEYb0bxMJFnRJA5T0UVeCZP5627bBgskBelzPd"></head>
 <body>
-<script type="module">import init from '/war_tools/trunk-template-615b5f068cd34e8b.js';init('/war_tools/trunk-template-615b5f068cd34e8b_bg.wasm');</script></body></html>
+
+<script type="module">
+import init, * as bindings from '/war_tools/trunk-template-72555d1de151be99.js';
+init('/war_tools/trunk-template-72555d1de151be99_bg.wasm');
+window.wasmBindings = bindings;
+
+</script></body></html>

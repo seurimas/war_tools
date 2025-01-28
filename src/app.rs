@@ -1,8 +1,8 @@
-use web_sys::*;
 use wasm_bindgen::{JsCast, UnwrapThrowExt};
+use web_sys::*;
 use yew::prelude::*;
 
-use crate::calculate::{calculate_weights};
+use crate::calculate::calculate_weights;
 
 pub const MAX_SOLDIERS: usize = 100;
 
@@ -15,7 +15,8 @@ pub struct WarOdds {
     pub city_def_bonus: f64,
     pub archer_attack_malus: f64,
     pub archer_defense_malus: f64,
-    pub limited_engagements: usize,
+    pub elite_attack_bonus: f64,
+    pub elite_defense_bonus: f64,
     pub attacker_present: bool,
     pub defender_present: bool,
     pub attacker_blessed: bool,
@@ -27,6 +28,8 @@ pub struct WarOdds {
     pub defender_city: bool,
     pub attacker_archers: bool,
     pub defender_archers: bool,
+    pub attacker_elites: bool,
+    pub defender_elites: bool,
     pub round_count: usize,
 }
 
@@ -39,7 +42,6 @@ impl Default for WarOdds {
             fortified_def_bonus: 1.,
             claimed_def_bonus: 1.,
             city_def_bonus: 2.,
-            limited_engagements: 0,
             attacker_present: true,
             defender_present: false,
             attacker_blessed: true,
@@ -51,8 +53,12 @@ impl Default for WarOdds {
             defender_city: false,
             attacker_archers: false,
             defender_archers: false,
+            attacker_elites: false,
+            defender_elites: false,
             archer_attack_malus: 1.,
             archer_defense_malus: 1.,
+            elite_attack_bonus: 1.,
+            elite_defense_bonus: 1.,
             round_count: 20,
         }
     }
@@ -82,6 +88,12 @@ impl WarOdds {
         if self.attacker_archers {
             rate -= self.archer_attack_malus;
         }
+        if self.attacker_elites {
+            rate += self.elite_attack_bonus;
+        }
+        if self.defender_elites {
+            rate -= self.elite_defense_bonus;
+        }
         rate / 100.
     }
 
@@ -104,6 +116,12 @@ impl WarOdds {
         }
         if self.defender_archers {
             rate -= self.archer_attack_malus;
+        }
+        if self.defender_elites {
+            rate += self.elite_defense_bonus;
+        }
+        if self.attacker_elites {
+            rate -= self.elite_attack_bonus;
         }
         rate / 100.
     }
@@ -177,9 +195,10 @@ pub enum Msg {
     UpdateFortifiedDefBonus(String),
     UpdateClaimedDefBonus(String),
     UpdateCityDefBonus(String),
-    UpdateLimitedEngagements(String),
     UpdateArcherAttackMalus(String),
     UpdateArcherDefenseMalus(String),
+    UpdateEliteAttackBonus(String),
+    UpdateEliteDefenseBonus(String),
     UpdateStartingAttackers(String),
     UpdateStartingDefenders(String),
     UpdateRoundCount(String),
@@ -194,6 +213,8 @@ pub enum Msg {
     ToggleDefenderCity,
     ToggleAttackerArchers,
     ToggleDefenderArchers,
+    ToggleAttackerElites,
+    ToggleDefenderElites,
     Calculate,
 }
 
@@ -270,9 +291,14 @@ impl Component for WarModel {
                     self.odds.archer_defense_malus = val;
                 }
             }
-            Msg::UpdateLimitedEngagements(val) => {
-                if let Ok(val) = val.parse::<usize>() {
-                    self.odds.limited_engagements = val;
+            Msg::UpdateEliteAttackBonus(val) => {
+                if let Ok(val) = val.parse::<f64>() {
+                    self.odds.elite_attack_bonus = val;
+                }
+            }
+            Msg::UpdateEliteDefenseBonus(val) => {
+                if let Ok(val) = val.parse::<f64>() {
+                    self.odds.elite_defense_bonus = val;
                 }
             }
             Msg::UpdateStartingAttackers(val) => {
@@ -319,12 +345,34 @@ impl Component for WarModel {
             }
             Msg::ToggleAttackerArchers => {
                 self.odds.attacker_archers = !self.odds.attacker_archers;
+                if self.odds.attacker_archers {
+                    self.odds.attacker_elites = false;
+                }
             }
             Msg::ToggleDefenderArchers => {
                 self.odds.defender_archers = !self.odds.defender_archers;
+                if self.odds.defender_archers {
+                    self.odds.defender_elites = false;
+                }
+            }
+            Msg::ToggleAttackerElites => {
+                self.odds.attacker_elites = !self.odds.attacker_elites;
+                if self.odds.attacker_elites {
+                    self.odds.attacker_archers = false;
+                }
+            }
+            Msg::ToggleDefenderElites => {
+                self.odds.defender_elites = !self.odds.defender_elites;
+                if self.odds.defender_elites {
+                    self.odds.defender_archers = false;
+                }
             }
             Msg::Calculate => {
-                self.weights = Some(calculate_weights(self.starting_attackers, self.starting_defenders, &self.odds));
+                self.weights = Some(calculate_weights(
+                    self.starting_attackers,
+                    self.starting_defenders,
+                    &self.odds,
+                ));
             }
         }
         true
@@ -332,15 +380,52 @@ impl Component for WarModel {
 }
 
 impl WarModel {
-    fn get_results_table_node(&self, ctx: &Context<WarModel>, results: [f64; MAX_SOLDIERS + 1]) -> yew::virtual_dom::VNode {
-        let mut minimum = results.iter().enumerate().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
-        let mut maximum = results.iter().enumerate().rev().find(|(_, r)| **r > 0.01).map(|(i, _)| i).unwrap_or(0);
-        let average = results.iter().enumerate().map(|(i, r)| i as f64 * r).sum::<f64>() / results.iter().sum::<f64>();
+    fn get_results_table_node(
+        &self,
+        ctx: &Context<WarModel>,
+        results: [f64; MAX_SOLDIERS + 1],
+    ) -> yew::virtual_dom::VNode {
+        let mut minimum = results
+            .iter()
+            .enumerate()
+            .find(|(_, r)| **r > 0.01)
+            .map(|(i, _)| i)
+            .unwrap_or(0);
+        let mut maximum = results
+            .iter()
+            .enumerate()
+            .rev()
+            .find(|(_, r)| **r > 0.01)
+            .map(|(i, _)| i)
+            .unwrap_or(0);
+        let average = results
+            .iter()
+            .enumerate()
+            .map(|(i, r)| i as f64 * r)
+            .sum::<f64>()
+            / results.iter().sum::<f64>();
         let total_chance = results.iter().sum::<f64>();
-        let median = results.iter().enumerate().map(|(i, r)| {
-            results.iter().enumerate().filter(|(j, _)| *j <= i).map(|(_, r)| r).sum::<f64>()
-        }).enumerate().find(|(_, r)| *r >= total_chance / 2.).map(|(i, _)| i).unwrap_or(0) as f64;
-        let probable_result = results.iter().enumerate().max_by_key(|(_, r)| (**r * 10000.) as usize).map(|(i, _)| i).unwrap_or(0);
+        let median = results
+            .iter()
+            .enumerate()
+            .map(|(i, r)| {
+                results
+                    .iter()
+                    .enumerate()
+                    .filter(|(j, _)| *j <= i)
+                    .map(|(_, r)| r)
+                    .sum::<f64>()
+            })
+            .enumerate()
+            .find(|(_, r)| *r >= total_chance / 2.)
+            .map(|(i, _)| i)
+            .unwrap_or(0) as f64;
+        let probable_result = results
+            .iter()
+            .enumerate()
+            .max_by_key(|(_, r)| (**r * 10000.) as usize)
+            .map(|(i, _)| i)
+            .unwrap_or(0);
         if minimum == 0 && maximum == 0 {
             if results[probable_result] < 0.0001 {
                 return html!(<div class="no_results">{"No victory possible"}</div>);
@@ -432,8 +517,12 @@ impl WarModel {
                         <input id="archer_def_malus" type="number" value={ self.odds.archer_defense_malus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateArcherDefenseMalus(get_value_from_input_event(e))) } />
                     </div>
                     <div>
-                        <label for="limited_engagements">{ "Limited Engagements: " }</label>
-                        <input id="limited_engagements" type="number" value={ self.odds.limited_engagements.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateLimitedEngagements(get_value_from_input_event(e))) } />
+                        <label for="elite_attack_bonus">{ "Elite Attack Bonus: " }</label>
+                        <input id="elite_attack_bonus" type="number" value={ self.odds.elite_attack_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateEliteAttackBonus(get_value_from_input_event(e))) } />
+                    </div>
+                    <div>
+                        <label for="elite_defense_bonus">{ "Elite Defense Bonus: " }</label>
+                        <input id="elite_defense_bonus" type="number" value={ self.odds.elite_defense_bonus.to_string() } oninput={ ctx.link().callback(|e| Msg::UpdateEliteDefenseBonus(get_value_from_input_event(e))) } />
                     </div>
                 </div>
                 <div id="attackers">
@@ -460,6 +549,10 @@ impl WarModel {
                     <div>
                         <label for="attacker_archers">{ "Attacker are Archers: " }</label>
                         <input id="attacker_archers" type="checkbox" checked={ self.odds.attacker_archers } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerArchers) } />
+                    </div>
+                    <div>
+                        <label for="attacker_elites">{ "Attacker are Elites: " }</label>
+                        <input id="attacker_elites" type="checkbox" checked={ self.odds.attacker_elites } onclick={ ctx.link().callback(|_| Msg::ToggleAttackerElites) } />
                     </div>
                 </div>
                 <div id="defenders">
@@ -490,6 +583,10 @@ impl WarModel {
                     <div>
                         <label for="defender_archers">{ "Defender Archers: " }</label>
                         <input id="defender_archers" type="checkbox" checked={ self.odds.defender_archers } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderArchers) } />
+                    </div>
+                    <div>
+                        <label for="defender_elites">{ "Defender Elites: " }</label>
+                        <input id="defender_elites" type="checkbox" checked={ self.odds.defender_elites } onclick={ ctx.link().callback(|_| Msg::ToggleDefenderElites) } />
                     </div>
                 </div>
                 <div id="calculate">
