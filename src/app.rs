@@ -118,10 +118,10 @@ impl WarOdds {
             rate -= self.archer_attack_malus;
         }
         if self.defender_elites {
-            rate += self.elite_defense_bonus;
+            rate += self.elite_attack_bonus;
         }
         if self.attacker_elites {
-            rate -= self.elite_attack_bonus;
+            rate -= self.elite_defense_bonus;
         }
         rate / 100.
     }
